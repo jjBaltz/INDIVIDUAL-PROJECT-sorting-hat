@@ -1,0 +1,51 @@
+.intro-text {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  padding: 30px;
+}
+
+.form {
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  width: 50%;
+}
+
+.btn-group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
+.btn-all-houses {
+ background: silver;
+}
+
+.btn-green {
+  background: #185d09;
+  border-color: silver;
+}
+
+.btn-blue {
+  background: #0852a0;
+  border-color: silver;
+}
+
+.btn-red {
+  background: #b41919;
+  border-color: silver;
+}
+
+.btn-yellow {
+  background: #dbb509;
+  border-color: silver;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-around;
+  gap: 10px 10px;
+}
