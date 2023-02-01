@@ -3,41 +3,42 @@ const students = [
     id: 1,
     name: "Rubeus Hagrid",
     house: "Gryffindor",
-    houseImg: ""
+    color: ""
   },
   {
     id: 2,
     name: "Thomas Riddle",
     house: "Slytherin",
-    houseImg: ""
+    color: ""
   },
   {
     id: 3,
     name: "Myrtle Warren",
     house: "Ravenclaw",
-    houseImg: ""
+    color: ""
   },
   {
     id: 4,
     name: "Layla Hauser",
     house: "Hufflepuff",
-    houseImg: ""
+    color: ""
   },
   {
     id: 5,
     name: "Noxx Wingwright",
     house: "Ravenclaw",
-    houseImg: ""
+    color: ""
   }
 ];
+const deathEaters = [];
 //creating the server connection and card styling
 const app = document.querySelector(".app");
 
 const cardsOnDom = (students) => {
-  let domString = `<div class="container">`;
+  let domString = `<div class="new-in">`;
   for (const student of students) {
     domString += `<div class="card" style="width: 18rem;">
-    <img src="${student.houseImg}" class="card-img-top" alt="${student.house}">
+    <img src="${student.color}" class="card-img-top" alt="${student.house}">
     <div class="card-body">
       <p class="card-text">${student.name}</p>
     </div>
@@ -48,6 +49,22 @@ const cardsOnDom = (students) => {
   app.innerHTML = domString;
 }
 cardsOnDom(students);
+
+//expelled students
+const expelledCardsOnDom = (deathEaters) => {
+  let domString = `<div class="expelled">`;
+  for (const student of deathEaters) {
+    domString += `<div class="card" style="width: 18rem;">
+    <img src="${student.color}" class="card-img-top">
+    <div class="card-body">
+      <p class="card-text">${student.name}</p>
+    </div>
+  </div>`;
+  };
+  domString += `</div>`
+  app.innerHTML = domString;
+}
+expelledCardsOnDom(deathEaters);
 
 //creating the filtering buttons
 const filter = (arrayOfStudents, house) => {
@@ -87,15 +104,66 @@ yellowButton.addEventListener("click", () => {
 });
 
 //creating a "new student" button with input
-function randomHouse(max) {
-  return Math.floor(Math.random() * max);
-} 
-if (randomHouse(4) === 0){
-  return "Slytherin"
-} else if (randomHouse(4) === 1){
-  return "Ravenclaw"
-} else if(randomHouse(4) === 2){
-  return "Gryffindor"
-} else if(randomHouse(4) === 3){
-  return "Hufflepuff"
+const welcomeNewStudent = (event) => {
+  event.preventDefault();
+  
+  function randomHouse(max) {
+    return Math.floor(Math.random() * max);
+  };
+  function assignRandomHouse(){
+    if (randomHouse(4) === 0){
+      return "Slytherin";
+    } else if (randomHouse(4) === 1){
+      return "Ravenclaw";
+    } else if(randomHouse(4) === 2){
+      return "Gryffindor";
+    } else if(randomHouse(4) === 3){
+     return "Hufflepuff";
+  }}
+  
+  // function colorAssignment (){
+  //   if (students.house === "Slytherin"){
+  //     return color = "green"
+  //   } else if(students.house === "Ravenclaw"){
+  //     return color = "blue"
+  //   } else if(students.house === "Gryffindor"){
+  //     return color = "red"
+  //   } else if(students.house === "Hufflepuff"){
+  //     return color = "yellow"
+  // }}
+  
+  const newStudent = {
+    id: students.length + 1,
+    name: document.querySelector("#name").value,
+    house: assignRandomHouse(),
+    // color: colorAssignment(students.house)
+  };
+  console.log("new student", newStudent);
+  
+  students.push(newStudent);
+
+  cardsOnDom(students);
+  document.querySelector("form").reset();
 };
+const newButton = document.querySelector("#form-submit");
+newButton.addEventListener("click", welcomeNewStudent);
+
+// creating an EXPEL button
+const appDiv = document.querySelector(".app");
+
+appDiv.addEventListener("click", (event) => {
+  if (event.target.id.includes("expel")) {
+    const [, studentId] = event.target.id.split("--");
+    const indexOfStudent = students.findIndex((object) => object.id === Number(studentId));
+    students.splice(indexOfStudent, 1);
+    // deathEaters.push(...expelledStudents);
+  };
+  cardsOnDom(students);
+  // expelledCardsOnDom(deathEaters);
+});
+
+const startApp = () => {
+  cardsOnDom(students);
+};
+
+startApp();

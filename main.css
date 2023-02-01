@@ -43,7 +43,7 @@
   border-color: silver;
 }
 
-.container {
+.new-in {
   display: flex;
   flex-flow: row wrap;
   align-content: space-around;
