@@ -3,44 +3,51 @@ const students = [
     id: 1,
     name: "Rubeus Hagrid",
     house: "Gryffindor",
-    color: ""
+    expelled: false,
+    img: "https://kanto.legiaodosherois.com.br/w760-h398-cfill/wp-content/uploads/2017/05/legiao_sZd5IYXiqQ_pAMmwJ3frtyNEnHc1SOx0TekuCjB6G2.jpg.webp"
   },
   {
     id: 2,
     name: "Thomas Riddle",
     house: "Slytherin",
-    color: ""
+    expelled: false,
+    img: "https://s2.r29static.com/bin/entry/e97/348,0,1400,1050/x,80/1785123/image.jpg"
   },
   {
     id: 3,
     name: "Myrtle Warren",
     house: "Ravenclaw",
-    color: ""
+    expelled: false,
+    img: "https://wizardswelcome.com/wp-content/uploads/2022/04/mrytle.jpg"
   },
   {
     id: 4,
     name: "Layla Hauser",
     house: "Hufflepuff",
-    color: ""
+    expelled: false,
+    img: "https://thenichollsworth.com/wp-content/uploads/2020/11/Unknown.jpeg"
   },
   {
     id: 5,
     name: "Noxx Wingwright",
     house: "Ravenclaw",
-    color: ""
+    expelled: false,
+    img: "https://www.seekpng.com/png/detail/184-1840811_ravenclaw-crest-harry-potter-harry-potter-ravenclaw-house.png"
   }
 ];
+
 const deathEaters = [];
+
 //creating the server connection and card styling
-const app = document.querySelector(".app");
+const app = document.querySelector(".student-containers");
 
 const cardsOnDom = (students) => {
-  let domString = `<div class="new-in">`;
+  let domString = `<div id="new-in">`;
   for (const student of students) {
     domString += `<div class="card" style="width: 18rem;">
-    <img src="${student.color}" class="card-img-top" alt="${student.house}">
+    <img src="${student.img}" class="card-img-top" alt="${student.house}">
     <div class="card-body">
-      <p class="card-text">${student.name}</p>
+      <p class="card-text" style="font-family:'Snell Roundhand'">${student.name}</p>
     </div>
     <button class="btn btn-danger" id="expel--${student.id}">Expel</button>
   </div>`;
@@ -52,12 +59,13 @@ cardsOnDom(students);
 
 //expelled students
 const expelledCardsOnDom = (deathEaters) => {
-  let domString = `<div class="expelled">`;
-  for (const student of deathEaters) {
+  let domString = `<div id="expelled">`;
+  const isExpelled = students.filter((student) => student.expelled);
+  for (const student of isExpelled) {
     domString += `<div class="card" style="width: 18rem;">
-    <img src="${student.color}" class="card-img-top">
     <div class="card-body">
       <p class="card-text">${student.name}</p>
+      <p>has been expelled from Hogwarts School of Witchcraft and Wizardry.</p>
     </div>
   </div>`;
   };
@@ -136,7 +144,7 @@ const welcomeNewStudent = (event) => {
     id: students.length + 1,
     name: document.querySelector("#name").value,
     house: assignRandomHouse(),
-    // color: colorAssignment(students.house)
+    expelled: false
   };
   console.log("new student", newStudent);
   
@@ -148,18 +156,26 @@ const welcomeNewStudent = (event) => {
 const newButton = document.querySelector("#form-submit");
 newButton.addEventListener("click", welcomeNewStudent);
 
+//trying to change color combos
+
+
+
 // creating an EXPEL button
-const appDiv = document.querySelector(".app");
+const appDiv = document.querySelector(".student-containers");
 
 appDiv.addEventListener("click", (event) => {
   if (event.target.id.includes("expel")) {
     const [, studentId] = event.target.id.split("--");
-    const indexOfStudent = students.findIndex((object) => object.id === Number(studentId));
-    students.splice(indexOfStudent, 1);
-    // deathEaters.push(...expelledStudents);
+    const studentIndex = students.findIndex((object) => object.id === Number(studentId));
+    students[studentIndex].expelled = true;
+    const expellTarget = students.splice(studentIndex, 0);
+    deathEaters.push(expellTarget);
+    
   };
   cardsOnDom(students);
-  // expelledCardsOnDom(deathEaters);
+  expelledCardsOnDom(deathEaters);
+  console.log(students);
+  console.log(deathEaters);
 });
 
 const startApp = () => {

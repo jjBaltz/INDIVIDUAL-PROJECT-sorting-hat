@@ -3,13 +3,24 @@
   flex-flow: wrap;
   justify-content: center;
   padding: 30px;
+  font-family: 'Harry Potter', sans-serif;
+}
+
+#paragraph {
+  font-family: Snell Roundhand, cursive;
+  font-size: larger;
+}
+
+img {
+  width: 286px;
+  height: 200px;
 }
 
 .form {
   display: flex;
   flex-flow: nowrap;
   justify-content: center;
-  width: 50%;
+  align-content: center;
 }
 
 .btn-group {
@@ -20,32 +31,52 @@
 }
 
 .btn-all-houses {
- background: silver;
+ background: #c0c0c0;
+ border-color: #7e7e7e;
 }
 
 .btn-green {
   background: #185d09;
-  border-color: silver;
+  border-color: #0e3605;
+  color: silver;
 }
 
 .btn-blue {
   background: #0852a0;
-  border-color: silver;
+  border-color: #05315f;
+  color: silver;
 }
 
 .btn-red {
   background: #b41919;
-  border-color: silver;
+  border-color: #8F1919;
+  color: gold;
 }
 
 .btn-yellow {
   background: #dbb509;
-  border-color: silver;
+  border-color: #B99907;
+  color: black;
 }
 
-.new-in {
+.btn-danger {
+  background: black;
+  color: #A90000;
+}
+
+#new-in {
   display: flex;
   flex-flow: row wrap;
   align-content: space-around;
   gap: 10px 10px;
+  padding: 15px;
+}
+
+#expelled {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-content: space-around;
+  gap: 10px 10px;
+  padding: 15px;
 }
