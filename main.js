@@ -36,14 +36,20 @@ const students = [
   }
 ];
 
-const deathEaters = [];
+const deathEaters = [
+  {
+    id: 1,
+    name: "Jasper",
+    expelled: true
+  }
+];
 
 //creating the server connection and card styling
 const app = document.querySelector(".student-containers");
 
 const cardsOnDom = (students) => {
   let domString = `<div id="new-in">`;
-  for (const student of students) {
+    for (const student of students) {
     domString += `<div class="card" style="width: 18rem;">
     <img src="${student.img}" class="card-img-top" alt="${student.house}">
     <div class="card-body">
@@ -58,10 +64,9 @@ const cardsOnDom = (students) => {
 cardsOnDom(students);
 
 //expelled students
-const expelledCardsOnDom = (deathEaters) => {
+const expelledCardsOnDom = () => {
   let domString = `<div id="expelled">`;
-  const isExpelled = students.filter((student) => student.expelled);
-  for (const student of isExpelled) {
+    for (const student of deathEaters) {
     domString += `<div class="card" style="width: 18rem;">
     <div class="card-body">
       <p class="card-text">${student.name}</p>
@@ -129,22 +134,23 @@ const welcomeNewStudent = (event) => {
      return "Hufflepuff";
   }}
   
-  // function colorAssignment (){
-  //   if (students.house === "Slytherin"){
-  //     return color = "green"
-  //   } else if(students.house === "Ravenclaw"){
-  //     return color = "blue"
-  //   } else if(students.house === "Gryffindor"){
-  //     return color = "red"
-  //   } else if(students.house === "Hufflepuff"){
-  //     return color = "yellow"
-  // }}
+  function colorAssignment (){
+    if (students.house === "Slytherin"){
+      return color = "green"
+    } else if(students.house === "Ravenclaw"){
+      return color = "blue"
+    } else if(students.house === "Gryffindor"){
+      return color = "red"
+    } else if(students.house === "Hufflepuff"){
+      return color = "yellow"
+  }}
   
   const newStudent = {
     id: students.length + 1,
     name: document.querySelector("#name").value,
     house: assignRandomHouse(),
-    expelled: false
+    expelled: false,
+    color: colorAssignment()
   };
   console.log("new student", newStudent);
   
@@ -168,14 +174,20 @@ appDiv.addEventListener("click", (event) => {
     const [, studentId] = event.target.id.split("--");
     const studentIndex = students.findIndex((object) => object.id === Number(studentId));
     students[studentIndex].expelled = true;
-    const expellTarget = students.splice(studentIndex, 0);
-    deathEaters.push(expellTarget);
+    const expellTarget = students.splice(studentIndex, 1);
+    deathEaters.push(...expellTarget);
     
   };
   cardsOnDom(students);
   expelledCardsOnDom(deathEaters);
   console.log(students);
   console.log(deathEaters);
+});
+
+const darkButton = document.querySelector("#show-dark");
+darkButton.addEventListener("click", () => {
+  // cardsOnDom(deathEaters);
+  expelledCardsOnDom();
 });
 
 const startApp = () => {
