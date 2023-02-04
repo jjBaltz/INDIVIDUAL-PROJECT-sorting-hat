@@ -16,7 +16,7 @@ img {
   height: 200px;
 }
 
-.form {
+.floater {
   display: flex;
   flex-flow: nowrap;
   justify-content: center;
@@ -61,7 +61,17 @@ img {
 
 .btn-danger {
   background: black;
-  color: #A90000;
+  color: silver;
+}
+
+#expelled {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
+}
+
+.card-body2 {
+  background: black;
+  color: silver;
+  text-align: center;
 }
 
 #new-in {
