@@ -4,7 +4,7 @@ const students = [
     name: "Rubeus Hagrid",
     house: "Gryffindor",
     expelled: false,
-    // color: colorAssignment()
+    // color: colorAssign,
     img: "https://kanto.legiaodosherois.com.br/w760-h398-cfill/wp-content/uploads/2017/05/legiao_sZd5IYXiqQ_pAMmwJ3frtyNEnHc1SOx0TekuCjB6G2.jpg.webp"
   },
   {
@@ -12,7 +12,7 @@ const students = [
     name: "Thomas Riddle",
     house: "Slytherin",
     expelled: false,
-    // color: colorAssignment(),
+    // color: colorAssign,
     img: "https://s2.r29static.com/bin/entry/e97/348,0,1400,1050/x,80/1785123/image.jpg"
   },
   {
@@ -20,7 +20,7 @@ const students = [
     name: "Myrtle Warren",
     house: "Ravenclaw",
     expelled: false,
-    // color: colorAssignment()
+    // color: colorAssign,
     img: "https://wizardswelcome.com/wp-content/uploads/2022/04/mrytle.jpg"
   },
   {
@@ -28,7 +28,7 @@ const students = [
     name: "Layla Hauser",
     house: "Hufflepuff",
     expelled: false,
-    // color: colorAssignment()
+    // color: colorAssign,
     img: "https://thenichollsworth.com/wp-content/uploads/2020/11/Unknown.jpeg"
   },
   {
@@ -36,7 +36,7 @@ const students = [
     name: "Noxx Wingwright",
     house: "Ravenclaw",
     expelled: false,
-    // color: colorAssignment()
+    // color: colorAssign,
     img: "https://www.seekpng.com/png/detail/184-1840811_ravenclaw-crest-harry-potter-harry-potter-ravenclaw-house.png"
   }
 ];
@@ -150,27 +150,28 @@ const welcomeNewStudent = (event) => {
      return "Hufflepuff";
   }}
   
-  // function colorAssignment (){
-  //   if (students.house === "Slytherin"){
-  //     const green = `<p style="background-color: #185d09;"></p>`
-  //     return green
-  //   } else if(students.house === "Ravenclaw"){
-  //     const blue = `<p style="background-color: #0852a0"></p>`
-  //     return color = blue
-  //   } else if(students.house === "Gryffindor"){
-  //     const red = `<p style="background-color: #b41919"></p>`
-  //     return color = red
-  //   } else {
-  //     const yellow = `<p style="background-color: #dbb509></p>`
-  //     return color = yellow
-  // }}
+  //color assignment
+  colorAssign = students.forEach(() => {
+   if (students.house === "Slytherin"){
+     const green = `<p style="background-color: #185d09;"></p>`
+     return green
+   } else if(students.house === "Ravenclaw"){
+     const blue = `<p style="background-color: #0852a0"></p>`
+     return color = blue
+   } else if(students.house === "Gryffindor"){
+     const red = `<p style="background-color: #b41919"></p>`
+     return color = red
+   } else {
+     const yellow = `<p style="background-color: #dbb509></p>`
+     return color = yellow
+ }});
   
   const newStudent = {
     id: students.length + 1,
     name: document.querySelector("#name").value,
     house: assignRandomHouse(),
     expelled: false,
-    // color: colorAssignment()
+    color: colorAssign
   };
   console.log("new student", newStudent);
   
