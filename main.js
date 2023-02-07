@@ -70,17 +70,17 @@ cardsOnDom(students);
 
 //expelled students
 const expelledCardsOnDom = () => {
-  let domString = `<div id="expelled">`;
+  let domStringExpelled = `<div id="expelled">`;
     for (const student of deathEaters) {
-    domString += `<div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+    domStringExpelled += `<div class="card text-bg-dark mb-3" style="max-width: 18rem;">
     <div class="card-body2">
       <h5 class="card-title">${student.name}</h5>
       <p class="card-text">has been expelled from Hogwarts School of Witchcraft and Wizardry.</p>
     </div>
   </div>`;
   };
-  domString += `</div>`
-  app.innerHTML = domString;
+  domStringExpelled += `</div>`
+  app.innerHTML = domStringExpelled;
 }
 expelledCardsOnDom(deathEaters);
 
@@ -121,6 +121,17 @@ yellowButton.addEventListener("click", () => {
   cardsOnDom(yellowFilter)
 });
 
+//hiding new student form
+const showFloat = document.querySelector("#showForm");
+const hideFloat = document.querySelector("#show");
+
+showFloat.addEventListener("click", () => {
+  console.log(showFloat);
+  if (hideFloat.style.display === "none") {
+    hideFloat.style.display = "block";
+  }
+});
+
 //creating a "new student" button with input
 const welcomeNewStudent = (event) => {
   event.preventDefault();
@@ -159,7 +170,7 @@ const welcomeNewStudent = (event) => {
     name: document.querySelector("#name").value,
     house: assignRandomHouse(),
     expelled: false,
-    color: colorAssignment()
+    // color: colorAssignment()
   };
   console.log("new student", newStudent);
   
@@ -171,6 +182,16 @@ const welcomeNewStudent = (event) => {
 const newButton = document.querySelector("#form-submit");
 newButton.addEventListener("click", welcomeNewStudent);
 
+// (event) => {
+//   const form = document.querySelectorAll('.needs-validation');
+//   if (!form.checkValidity()) {
+//     event.preventDefault()
+//     event.stopPropagation()
+//   } else {
+//     welcomeNewStudent();
+//   }
+// });
+
 // creating an EXPEL button
 const appDiv = document.querySelector(".student-containers");
 
@@ -181,7 +202,6 @@ appDiv.addEventListener("click", (event) => {
     students[studentIndex].expelled = true;
     const expellTarget = students.splice(studentIndex, 1);
     deathEaters.push(...expellTarget);
-    
   };
   cardsOnDom(students);
   expelledCardsOnDom(deathEaters);

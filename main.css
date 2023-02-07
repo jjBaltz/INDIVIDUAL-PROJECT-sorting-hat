@@ -16,6 +16,17 @@ img {
   height: 200px;
 }
 
+.btn-outline {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: space-around;
+  background: #D8BC33;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(159, 131, 0, 1));
+  color: black;
+  padding: 20px;
+}
+
 .floater {
   display: flex;
   flex-flow: nowrap;

@@ -19,18 +19,23 @@
     <!-- <p></p> introduction text/greeting -->
     <p id="paragraph">We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry. Term begins on September 1. We await your owl by no later than July 31.</p>
   </div>
-  <form>
-   <!-- New Student Form -->
-   <div class="floater">
-    <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="name" placeholder="Name Here">
-      <label for="floatingInput">First Year's Name</label>
-    </div>
-    <div class="create">
-      <button type="submit" class="btn btn-create" id="form-submit"></button>
-    </div>
-   </div>
-  </form>
+  <div class="d-grid">
+    <button class="btn btn-outline" id="showForm" type="button">Welcome</button>
+  </div>
+  <div id="show" style="display: none">
+    <!-- New Student Form -->
+    <form class="row g-3 needs-validation" name="studentForm" novalidate> 
+     <div class="floater" id="hideForm">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="name" placeholder="Name Here" required>
+        <label for="floatingInput">First Year's Name</label>
+      </div>
+      <div class="create">
+        <button type="submit" class="btn btn-create" id="form-submit"></button>
+      </div>
+     </div>
+    </form>
+  </div>
   <div>
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
       <button type="button" class="btn btn-all-houses" id="show-all">All Houses</button>
